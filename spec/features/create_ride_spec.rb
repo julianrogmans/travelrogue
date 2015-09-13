@@ -6,13 +6,13 @@ feature 'User creates a ride' do
   let(:time) { Faker::Time.forward(2, :morning) }
   scenario 'with valid data' do
     visit new_ride_path
-    fill_in :origin, with: origin
-    fill_in :destination, with: Faker::Address.street_address
-    fill_in :seat_count, with: 3
-    fill_in :date, with: Faker::Date.forward(2)
-    fill_in :departure_time, with: time
-    fill_in :return_time, with: time + 2.hours
-    click_on :submit
+    fill_in 'Origin', with: origin
+    fill_in "Destination", with: Faker::Address.street_address
+    fill_in "Seat count", with: 3
+    fill_in "Date", with: Faker::Date.forward(2)
+    fill_in "Departure time", with: time
+    fill_in "Return time", with: time + 2.hours
+    click_on "Create Ride"
     expect(page).to have_content origin
   end
 end
