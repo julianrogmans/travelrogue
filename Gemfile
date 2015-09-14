@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
@@ -37,7 +37,7 @@ gem 'slim-rails'
 group :development do
   gem 'byebug'
   gem 'better_errors'
-  gem 'binding_of_caller'  
+  gem 'binding_of_caller'
 end
 
 group :development, :test do
