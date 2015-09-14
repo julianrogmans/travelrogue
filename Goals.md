@@ -5,6 +5,7 @@
 	- Metaprogramming
 	- Cache + pagination
 	- i18n / Locales (Use in an app)
+	- Active Model
 
 - ###Review
 	- Browser Debugging
