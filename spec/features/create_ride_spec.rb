@@ -2,8 +2,10 @@ require "rails_helper"
 require "active_support"
 
 feature 'User creates a ride' do
+  
   let(:origin) { Faker::Address.street_address }
   let(:time) { Faker::Time.forward(2, :morning) }
+
   scenario 'with valid data' do
     visit new_ride_path
     fill_in 'Origin', with: origin
