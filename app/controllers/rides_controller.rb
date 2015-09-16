@@ -1,5 +1,4 @@
 class RidesController < ApplicationController
-
   before_action :find_ride, only: [:show, :update]
 
   def new
@@ -15,23 +14,24 @@ class RidesController < ApplicationController
     if ride.save
       redirect_to ride_path(ride.id)
     else
-      render 'new'
+      render "new"
     end
   end
 
   private
 
-    def find_ride
-      @ride = Ride.find(params[:id])
-    end
-    def ride_params
-      params.require(:ride).permit(
-        :origin,
-        :destination,
-        :seat_count,
-        :date,
-        :departure_time,
-        :return_time
-      )
-    end
+  def find_ride
+    @ride = Ride.find(params[:id])
+  end
+
+  def ride_params
+    params.require(:ride).permit(
+      :origin,
+      :destination,
+      :seat_count,
+      :date,
+      :departure_time,
+      :return_time
+    )
+  end
 end
