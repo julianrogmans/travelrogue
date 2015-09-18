@@ -11,5 +11,4 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe RidesHelper, type: :helper do
-  
 end
