@@ -1,5 +1,4 @@
 require "rails_helper"
-require "active_support"
 
 feature "User creates a ride" do
   let(:origin) { Faker::Address.street_address }
