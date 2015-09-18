@@ -22,6 +22,6 @@ feature "User creates a ride" do
   scenario "with invalid data" do
     fill_in "Origin", with: origin
     click_on "Create Ride"
-    expect(page).to have_selector('#new_ride')
+    expect(page).to have_selector("#new_ride")
   end
 end
