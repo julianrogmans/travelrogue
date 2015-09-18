@@ -37,6 +37,7 @@ gem 'devise'
 # gem 'capistrano-rails', group: :development
 
 group :development do
+  gem 'terminal-notifier-guard'
   gem 'byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
