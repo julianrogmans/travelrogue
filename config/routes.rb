@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'rides#index'
   devise_for :users
   resources :rides
   # The priority is based upon order of creation: first created -> highest priority.

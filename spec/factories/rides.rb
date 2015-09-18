@@ -1,10 +1,11 @@
 FactoryGirl.define do
   factory :ride do
-    origin "Origin"
-    destination "Destination"
+    user
+    origin { Faker::Address.street_address }
+    destination { Faker::Address.street_address }
     seat_count 1
-    date "2015-09-02"
-    departure_time "2015-09-02 15:44:51"
+    date { 1.day.from_now }
+    departure_time { Time.now }
   end
 
 end
