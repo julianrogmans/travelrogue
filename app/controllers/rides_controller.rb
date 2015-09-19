@@ -9,12 +9,12 @@ class RidesController < ApplicationController
   end
 
   def create
-    ride = Ride.new(ride_params)
+    @ride = Ride.new(ride_params)
 
-    if ride.save
-      redirect_to ride_path(ride.id)
+    if @ride.save
+      redirect_to ride_path(@ride.id)
     else
-      render "new"
+      render :new
     end
   end
 
