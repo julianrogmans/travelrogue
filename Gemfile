@@ -37,6 +37,7 @@ gem 'devise'
 # gem 'capistrano-rails', group: :development
 
 group :development do
+  gem 'terminal-notifier-guard'
   gem 'byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -47,6 +48,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'fuubar'
+  gem 'guard-rspec', require: false
   gem 'capybara'
   gem 'figaro'
   gem 'faker'
