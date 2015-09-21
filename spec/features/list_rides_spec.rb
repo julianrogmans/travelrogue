@@ -10,10 +10,7 @@ feature "List rides" do
 
     context "when signed in" do
       scenario "shows rides offered by others" do
-        visit new_user_session_path
-        fill_in "Email", with: user1.email
-        fill_in "Password", with: user1.password
-        click_on "Log in"
+        sign_in user1
         expect(page).to have_content(ride2.origin)
         expect(page).to have_no_content(ride1.origin)
       end
