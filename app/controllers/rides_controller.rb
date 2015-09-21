@@ -1,6 +1,10 @@
 class RidesController < ApplicationController
   before_action :find_ride, only: [:show, :update]
 
+  def index
+    @rides = Ride.all
+  end
+
   def new
     @ride = Ride.new
   end
@@ -26,6 +30,7 @@ class RidesController < ApplicationController
 
   def ride_params
     params.require(:ride).permit(
+      :user_id,
       :origin,
       :destination,
       :seat_count,
