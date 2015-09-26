@@ -1,4 +1,4 @@
-- unless ride.user == current_user
+- unless ride.driver == current_user
   = content_tag 'div', id: dom_id(ride), class: 'ride'
     = ride.origin
     = ride.destination
@@ -6,3 +6,9 @@
     = ride.date
     = ride.departure_time
     = ride.return_time
+    - if ride.full?
+      p Ride full
+    - elsif current_user.is_passenger? ride.id
+      p Taking ride
+    - else
+      = link_to("Take ride", confirm_ride_path(ride.id))

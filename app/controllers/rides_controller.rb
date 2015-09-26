@@ -1,15 +1,15 @@
 class RidesController < ApplicationController
-  before_action :find_ride, only: [:show, :update]
+  before_action :find_ride, only: [:show, :update, :confirm]
 
   def index
     @rides = Ride.all
   end
 
-  def new
-    @ride = Ride.new
+  def show
   end
 
-  def show
+  def new
+    @ride = Ride.new
   end
 
   def create
@@ -20,6 +20,18 @@ class RidesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def confirm
+  end
+
+  def send_request
+    if Ride.find(params[:passenger][:ride_id]).full?
+      redirect_to rides_path, alert: "Sorry this ride is now full"
+      return false
+    end
+    Passenger.create params.require(:passenger).permit(:user_id, :ride_id)
+    redirect_to rides_path, notice: "Thank you for your request"
   end
 
   private

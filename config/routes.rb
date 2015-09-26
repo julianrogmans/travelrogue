@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root "rides#index"
   devise_for :users
   resources :rides
+  get "rides/:id/confirm" => "rides#confirm", as: :confirm_ride
+  post "rides/:id/request" => "rides#send_request", as: :request_ride
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
