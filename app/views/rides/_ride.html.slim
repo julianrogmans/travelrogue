@@ -1,4 +1,4 @@
-- unless ride.user == current_user
+- unless ride.driver == current_user
   = content_tag 'div', id: dom_id(ride), class: 'ride'
     = ride.origin
     = ride.destination
