@@ -1,0 +1,16 @@
+= render "shared/error_messages", target: @ride
+
+= form_for @ride do |f|
+  = f.label :origin
+  = f.text_field :origin
+  = f.label :destination
+  = f.text_field :destination
+  = f.label :seat_count
+  = f.number_field :seat_count
+  = f.label :date
+  = f.date_field :date
+  = f.label :departure_time
+  = f.time_field :departure_time
+  = f.label :return_time
+  = f.time_field :return_time
+  = f.submit 'Create Ride'
