@@ -34,7 +34,7 @@ class RidesController < ApplicationController
       redirect_to rides_path, alert: "You are already taking this ride"
       return false
     end
-    Passenger.create params.require(:passenger).permit(:user_id, :ride_id)
+    Passenger.create passenger_params
     redirect_to rides_path, notice: "Thank you for your request"
   end
 
@@ -54,5 +54,9 @@ class RidesController < ApplicationController
       :departure_time,
       :return_time
     )
+  end
+
+  def passenger_params
+    params.require(:passenger).permit(:user_id, :ride_id)
   end
 end
