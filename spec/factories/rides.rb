@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :ride do
-    user
+    association :driver, factory: :user
     origin { Faker::Address.street_address }
     destination { Faker::Address.street_address }
     seat_count 1
