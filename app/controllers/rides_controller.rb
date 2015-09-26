@@ -29,6 +29,9 @@ class RidesController < ApplicationController
     if Ride.find(params[:passenger][:ride_id]).full?
       redirect_to rides_path, alert: "Sorry this ride is now full"
       return false
+    elsif user_signed_in? && current_user.is_passenger? params[:passenger][:ride_id]
+      redirect_to rides_path, alert: "You are already taking this ride"
+      return false
     end
     Passenger.create params.require(:passenger).permit(:user_id, :ride_id)
     redirect_to rides_path, notice: "Thank you for your request"
