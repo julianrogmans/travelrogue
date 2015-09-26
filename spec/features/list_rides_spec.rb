@@ -5,8 +5,8 @@ feature "List rides" do
   let(:user2) { create(:user) }
 
   context "when rides exist" do
-    let!(:ride1) { create(:ride, user: user1) }
-    let!(:ride2) { create(:ride, user: user2) }
+    let!(:ride1) { create(:ride, driver: user1) }
+    let!(:ride2) { create(:ride, driver: user2) }
 
     context "when signed in" do
       scenario "shows rides offered by others" do
