@@ -36,7 +36,7 @@ class RidesController < ApplicationController
   private
 
   def set_notice(ride_requested)
-    notice = case
+    case
     when current_user.passenger?(ride_requested)
       "You are already taking this ride"
     when ride_requested.full?

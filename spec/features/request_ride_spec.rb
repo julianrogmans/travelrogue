@@ -44,7 +44,7 @@ feature "Request ride" do
     end
   end
 
-  context 'when ride is full' do
+  context "when ride is full" do
     let(:ride) { create(:ride, passengers: [create(:passenger)]) }
 
     scenario "cancles request with ride full message" do
