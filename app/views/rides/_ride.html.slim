@@ -9,7 +9,7 @@
     - if user_signed_in?
       - if ride.full?
         p Ride full
-      - elsif current_user.is_passenger? ride.id
+      - elsif current_user.passenger? ride
         p Taking ride
       - else
         = link_to("Take ride", confirm_ride_path(ride.id))
