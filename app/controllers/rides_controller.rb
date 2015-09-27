@@ -26,16 +26,16 @@ class RidesController < ApplicationController
   end
 
   def send_request
-    ride = params[:passenger][:ride_id]
-    if Ride.find(ride).full?
-      redirect_to rides_path, alert: "Sorry this ride is now full"
-      return false
-    elsif user_signed_in? && current_user.is_passenger?(ride)
-      redirect_to rides_path, alert: "You are already taking this ride"
-      return false
+    ride = Ride.find(params[:passenger][:ride_id])
+    ride_available = !(ride.full? && current_user.passenger?(ride))
+    notice = "Thank you for your request"
+    if ride.full?
+      notice = "Sorry this ride is now full"
+    elsif current_user.passenger?(ride)
+      notice = "You are already taking this ride"
     end
-    Passenger.create passenger_params
-    redirect_to rides_path, notice: "Thank you for your request"
+    Passenger.create passenger_params if ride_available
+    redirect_to rides_path, notice: notice
   end
 
   private
