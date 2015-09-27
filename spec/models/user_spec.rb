@@ -6,9 +6,9 @@ describe User do
     let(:ride) { create(:ride) }
 
     context "when user is a passenger" do
-      let!(:passenger) {
+      let!(:passenger) do
         create(:passenger, user_id: user.id, ride_id: ride.id)
-      }
+      end
 
       it "should return true" do
         expect(user.passenger?(ride)).to be_truthy
