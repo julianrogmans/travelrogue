@@ -8,6 +8,6 @@ class Ride < ActiveRecord::Base
   validates :departure_time, presence: true
 
   def full?
-    self.passengers.count >= self.seat_count
+    passengers.count >= seat_count
   end
 end

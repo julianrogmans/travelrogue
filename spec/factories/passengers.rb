@@ -3,5 +3,4 @@ FactoryGirl.define do
     user
     ride
   end
-
 end

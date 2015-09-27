@@ -9,7 +9,7 @@ feature "Request ride" do
     before(:each) do
       visit rides_path
       click_on "Take ride"
-      expect{click_on "Confirm"}.to change{ride.passengers.count}.by(1)
+      expect { click_on "Confirm" }.to change{ride.passengers.count}.by(1)
       expect(page).to have_text "Thank you for your request"
     end
 

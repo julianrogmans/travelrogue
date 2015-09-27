@@ -1,20 +1,20 @@
 require "rails_helper"
 
 describe User do
-  describe '#is_passenger?' do
+  describe "#is_passenger?" do
     let(:user) { create(:user) }
     let(:ride) { create(:ride) }
 
-    context 'when user is a passenger' do
+    context "when user is a passenger" do
       let!(:passenger) { create(:passenger, user_id: user.id, ride_id: ride.id) }
 
-      it 'should return true' do
+      it "should return true" do
         expect(user.is_passenger?(ride.id)).to be_truthy
       end
     end
 
-    context 'when user is NOT a passenger' do
-      it 'should return false' do
+    context "when user is NOT a passenger" do
+      it "should return false" do
         expect(user.is_passenger?(ride.id)).to be_falsy
       end
     end
