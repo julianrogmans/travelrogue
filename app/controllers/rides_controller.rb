@@ -27,7 +27,7 @@ class RidesController < ApplicationController
 
   def send_request
     ride = Ride.find(params[:passenger][:ride_id])
-    ride_available = (!ride.full? && !current_user.passenger?(ride))
+    ride_available = (!ride.full? && !ride.has_passenger?(current_user))
     notice = set_notice(ride)
     Passenger.create passenger_params if ride_available
     redirect_to rides_path, notice: notice
@@ -37,7 +37,7 @@ class RidesController < ApplicationController
 
   def set_notice(ride_requested)
     case
-    when current_user.passenger?(ride_requested)
+    when ride_requested.has_passenger?(current_user)
       "You are already taking this ride"
     when ride_requested.full?
       "Sorry this ride is now full"

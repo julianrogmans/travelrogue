@@ -10,4 +10,8 @@ class Ride < ActiveRecord::Base
   def full?
     passengers.count >= seat_count
   end
+
+  def has_passenger?(user)
+    passengers.one? { |passenger| passenger.user_id == user.id }
+  end
 end
