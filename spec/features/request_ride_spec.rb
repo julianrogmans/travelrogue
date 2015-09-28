@@ -37,7 +37,7 @@ feature "Request ride" do
       create(:passenger, user_id: user.id, ride_id: ride.id)
     end
 
-    scenario "cancles request with already taking ride message" do
+    scenario "cancels request with already taking ride message" do
       visit confirm_ride_path ride.id
       click_on "Confirm"
       expect(page).to have_text "You are already taking this ride"
