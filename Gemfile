@@ -36,6 +36,8 @@ gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'simplecov', :require => false, :group => :test
+
 group :development do
   gem 'terminal-notifier-guard'
   gem 'byebug'
