@@ -7,9 +7,9 @@
     = ride.departure_time
     = ride.return_time
     - if user_signed_in?
-      - if ride.full?
-        p Ride full
-      - elsif ride.has_passenger? current_user
+      - if ride.has_passenger? current_user
         p Taking ride
+      - elsif ride.full?
+        p Ride full
       - else
         = link_to("Take ride", confirm_ride_path(ride.id))
