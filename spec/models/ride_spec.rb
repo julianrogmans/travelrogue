@@ -28,7 +28,8 @@ describe Ride do
 
   describe "when adding a passenger" do
     specify do
-      expect{ ride.add_passenger(user) }.to change{ ride.passengers.count }.by(1)
+      expect { ride.add_passenger(user) }.to(
+        change { ride.passengers.count }.by(1))
     end
   end
 end
