@@ -4,7 +4,4 @@
 = @ride.date
 = @ride.departure_time
 = @ride.return_time if @ride.return_time
-= form_for Passenger.new, url: request_ride_path do |f|
-  = f.hidden_field :user_id, value: current_user.id
-  = f.hidden_field :ride_id, value: @ride.id
-  = f.submit "Confirm Request"
+= link_to "Confirm", request_ride_path(@ride.id), method: :post
