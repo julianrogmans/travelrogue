@@ -1,5 +1,5 @@
 class RidesController < ApplicationController
-  before_action :find_ride, only: [:show, :update, :confirm]
+  before_action :find_ride, only: [:show, :update, :confirm, :send_request]
 
   def index
     @rides = Ride.all
@@ -26,25 +26,11 @@ class RidesController < ApplicationController
   end
 
   def send_request
-    ride = Ride.find(params[:passenger][:ride_id])
-    ride_available = (!ride.full? && !ride.has_passenger?(current_user))
-    notice = set_notice(ride)
-    Passenger.create passenger_params if ride_available
-    redirect_to rides_path, notice: notice
+    @ride.add_passenger current_user
+    redirect_to rides_path, notice: "Thank you for your request"
   end
 
   private
-
-  def set_notice(ride_requested)
-    case
-    when ride_requested.has_passenger?(current_user)
-      "You are already taking this ride"
-    when ride_requested.full?
-      "Sorry this ride is now full"
-    else
-      "Thank you for your request"
-    end
-  end
 
   def find_ride
     @ride = Ride.find(params[:id])
@@ -60,9 +46,5 @@ class RidesController < ApplicationController
       :departure_time,
       :return_time
     )
-  end
-
-  def passenger_params
-    params.require(:passenger).permit(:user_id, :ride_id)
   end
 end

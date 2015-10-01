@@ -14,4 +14,8 @@ class Ride < ActiveRecord::Base
   def has_passenger?(user)
     passengers.one? { |passenger| passenger.user_id == user.id }
   end
+
+  def add_passenger(user)
+    Passenger.create ride: self, user: user
+  end
 end
