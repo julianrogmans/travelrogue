@@ -1,12 +1,10 @@
 require "rails_helper"
 
 describe Ride do
-
   let!(:ride) { create(:ride) }
   let!(:user) { create(:user) }
 
   describe "full ride" do
-
     before do
       ride.add_passenger user
     end
@@ -22,12 +20,12 @@ describe Ride do
       end
     end
 
-    context 'when user is a passenger' do
+    context "when user is a passenger" do
       before do
         ride.seat_count = 2
         ride.add_passenger(user)
       end
-      it 'prevents user from being added as a passenger' do
+      it "prevents user from being added as a passenger" do
         expect(ride).to have_passenger(user)
       end
     end
