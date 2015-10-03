@@ -30,20 +30,4 @@ describe Ride do
       end
     end
   end
-
-  # describe "when user is a passenger" do
-  #   let(:ride) { create(:ride, seat_count: 2) }
-  #
-  #   before do
-  #     ride.add_passenger user
-  #   end
-  #
-  #   specify {  }
-  # end
-  #
-  # describe "when adding a passenger" do
-  #   specify do
-
-  #   end
-  # end
 end
