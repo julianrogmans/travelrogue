@@ -12,10 +12,14 @@ class Ride < ActiveRecord::Base
   end
 
   def has_passenger?(user)
-    passengers.one? { |passenger| passenger.user_id == user.id }
+    passengers.any? { |passenger| passenger.user_id == user.id }
   end
 
-  def add_passenger(user)
-    Passenger.create ride: self, user: user
+  def add_passenger(passenger)
+    Passenger.create ride: self, user: passenger
+  end
+
+  def passenger_count
+    passengers.count
   end
 end
