@@ -22,4 +22,8 @@ class Ride < ActiveRecord::Base
   def passenger_count
     passengers.count
   end
+
+  def seats_available
+    seat_count - passenger_count
+  end
 end
