@@ -27,7 +27,8 @@ class RidesController < ApplicationController
 
   def send_request
     @ride.add_passenger current_user
-    redirect_to rides_path, notice: "Thank you for your request"
+    flash[:success] = "Thank you for your request"
+    redirect_to rides_path
   end
 
   private
