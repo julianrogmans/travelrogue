@@ -4,12 +4,21 @@ describe Ride do
   let!(:ride) { create(:ride) }
   let!(:user) { create(:user) }
 
-  describe "full ride" do
-    before do
-      ride.add_passenger user
+  describe "status" do
+    context "when ride is full" do
+      before do
+        ride.add_passenger user
+      end
+
+      specify { expect(ride).to be_full }
     end
 
-    specify { expect(ride).to be_full }
+    context "with seats available" do
+      it "has seats available" do
+        expect(ride.seats_available).to eq(1)
+        expect(ride).to_not be_full
+      end
+    end
   end
 
   describe "passengers" do
