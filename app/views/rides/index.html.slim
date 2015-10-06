@@ -1,5 +1,10 @@
-= flash[:notice] if !flash[:notice].nil?
-- if @rides.present?
-  = render @rides
-- else
-  p No rides being offered currently
+.row
+  - flash.each do |key, value|
+    <div data-alert class="alert-box #{key} radius text-center">
+      b = value
+      a.close &times;
+    </div>
+  - if @rides.present?
+    = render @rides
+  - else
+    p No rides being offered currently
