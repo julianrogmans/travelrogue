@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe Ride do
-  let!(:ride) { create(:ride) }
-  let!(:user) { create(:user) }
+  let!(:ride) { create :ride }
+  let!(:user) { create :user }
 
   describe "status" do
     context "when ride is full" do
