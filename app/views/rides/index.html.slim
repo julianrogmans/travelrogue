@@ -1,9 +1,22 @@
+.contain-to-grid.fixed
+  nav.top-bar [data-topbar role="navigation"]
+    ul.title-area
+      li.toggle-topbar.menu-icon: a: span Menu
+      li.name = link_to image_tag('menu-logo.png'), root_path, class: 'menu-logo'
+    section.top-bar-section
+      ul.left
+        li = link_to "Give a Ride!", new_ride_path
+        li = link_to "Request a Ride!", '#'
+      ul.right
+        li.has-dropdown
+          = link_to current_user.full_name, users_path(current_user)
+          ul.dropdown
+            li = link_to "Settings", edit_user_registration_path(current_user)
+            li = link_to "Sign Out", destroy_user_session_path, method: :delete
+          
 .row
-  - flash.each do |key, value|
-    <div data-alert class="alert-box #{key} radius text-center">
-      b = value
-      a.close &times;
-    </div>
+  .small-12.text-center.columns
+    = image_tag('logo.png')
   - if @rides.present?
     = render @rides
   - else

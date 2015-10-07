@@ -1,0 +1,10 @@
+.profile {
+  @include grid-column(12);
+  @media #{$medium-up} { @include grid-column(8, $offset: 2); }
+  @media #{$large-up} { @include grid-column(6, $offset: 3); }
+}
+
+.panel {
+  &.alert { background: lighten($alert-color, 35%); }
+  &.success { background: lighten($success-color, 35%); }
+}
