@@ -12,5 +12,14 @@ html lang="en"
     = csrf_meta_tag
 
   body
+    
+    - if flash[:notice]
+      .alert-box.success.text-center [data-alert] 
+        b = flash[:notice]
+        a.close &times;
+    - if flash[:alert]
+      .alert-box.warning.text-center [data-alert] 
+        b = flash[:alert]
+        a.close &times;
 
     == yield

@@ -14,6 +14,7 @@
 
 @import "foundation_and_overrides";
 @import "rides";
+@import "users";
 
 body {
   width: 100%;
@@ -21,4 +22,8 @@ body {
   background: url(image-path('rogue-valley-background.jpg'));
   background-repeat: repeat-y;
   background-size: cover;
+ }
+
+ .menu-logo {
+   padding: 0 20px;
  }
