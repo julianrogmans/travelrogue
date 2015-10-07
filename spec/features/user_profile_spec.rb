@@ -19,11 +19,11 @@ feature "User profile" do
     fill_in "Last Name", with: "Example"
     fill_in "Current Password", with: '12345678'
     click_on "Update"
-    expect(page).to have_text "Your account has been updateds"
+    expect(page).to have_text "Your account has been updated"
   end
 
   scenario 'can be signed out' do
     click_on "Sign Out"
-    expect(page).to have_text "Log in"
+    expect(page).to have_text "Signed out successfully"
   end
 end
