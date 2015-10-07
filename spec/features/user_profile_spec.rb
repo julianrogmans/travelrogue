@@ -22,8 +22,14 @@ feature "User profile" do
     expect(page).to have_text "Your account has been updated"
   end
 
-  scenario 'can be signed out' do
+  scenario 'can be signed out of' do
     click_on "Sign Out"
     expect(page).to have_text "Signed out successfully"
+  end
+
+  scenario 'can be deleted' do
+    click_on "Settings"
+    click_on "Cancel my account"
+    expect(page).to have_text "successfully cancelled"
   end
 end
