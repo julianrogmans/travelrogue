@@ -1,9 +1,11 @@
 require "rails_helper"
 
 feature "User creates a ride" do
+  let(:new_user) { create :user }
   let(:origin) { Faker::Address.street_address }
   let(:time) { Faker::Time.forward(2, :morning) }
   before(:each) do
+    sign_in_as new_user
     visit new_ride_path
   end
 
