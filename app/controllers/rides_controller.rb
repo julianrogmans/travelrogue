@@ -1,5 +1,6 @@
 class RidesController < ApplicationController
   before_action :find_ride, only: [:show, :update, :confirm, :send_request]
+  before_action :authenticate_user!, except: [:index]
 
   def index
     @rides = Ride.all
@@ -27,8 +28,7 @@ class RidesController < ApplicationController
 
   def send_request
     @ride.add_passenger current_user
-    flash[:success] = "Thank you for your request"
-    redirect_to rides_path
+    redirect_to rides_path, notice: "Thank you for your request"
   end
 
   private
