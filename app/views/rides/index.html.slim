@@ -8,11 +8,15 @@
         li = link_to "Give a Ride!", new_ride_path
         li = link_to "Request a Ride!", '#'
       ul.right
-        li.has-dropdown
-          = link_to current_user.full_name, users_path(current_user)
-          ul.dropdown
-            li = link_to "Settings", edit_user_registration_path(current_user)
-            li = link_to "Sign Out", destroy_user_session_path, method: :delete
+        - if user_signed_in?
+          li.has-dropdown
+            = link_to current_user.full_name, users_path(current_user)
+            ul.dropdown
+              li = link_to "Settings", edit_user_registration_path(current_user)
+              li = link_to "Sign Out", destroy_user_session_path, method: :delete
+        - else
+          li = link_to "Create Account", new_user_registration_path
+          li = link_to "Sign In", new_user_session_path
           
 .row
   .small-12.text-center.columns
@@ -20,4 +24,6 @@
   - if @rides.present?
     = render @rides
   - else
-    p No rides being offered currently
+    .row
+      .medium-8.medium-offset-2.columns.text-center
+        .panel.radius.warning: h4 No rides being offered currently
