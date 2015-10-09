@@ -6,4 +6,24 @@ class Ride < ActiveRecord::Base
   validates :seat_count, presence: true
   validates :date, presence: true
   validates :departure_time, presence: true
+
+  def full?
+    passengers.count >= seat_count
+  end
+
+  def has_passenger?(user)
+    passengers.any? { |passenger| passenger.user_id == user.id }
+  end
+
+  def add_passenger(passenger)
+    Passenger.create ride: self, user: passenger
+  end
+
+  def passenger_count
+    passengers.count
+  end
+
+  def seats_available
+    seat_count - passenger_count
+  end
 end

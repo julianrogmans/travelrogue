@@ -1,0 +1,45 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+    title == content_for?(:title) ? yield(:title) : "Travel Rogue"
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    = csrf_meta_tag
+
+  body
+  
+    .contain-to-grid.fixed
+      nav.top-bar [data-topbar role="navigation"]
+        ul.title-area
+          li.toggle-topbar.menu-icon: a: span Menu
+          li.name = link_to image_tag('menu-logo.png'), root_path, class: 'menu-logo'
+        section.top-bar-section
+          ul.left
+            li = link_to "Give a Ride!", new_ride_path
+            li = link_to "Request a Ride!", '#'
+          ul.right
+            - if user_signed_in?
+              li.has-dropdown
+                = link_to current_user.full_name, users_path(current_user)
+                ul.dropdown
+                  li = link_to "Settings", edit_user_registration_path(current_user)
+                  li = link_to "Sign Out", destroy_user_session_path, method: :delete
+            - else
+              li = link_to "Create Account", new_user_registration_path
+              li = link_to "Sign In", new_user_session_path
+    
+    - if flash[:notice]
+      .alert-box.success.text-center [data-alert] 
+        b = flash[:notice]
+        a.close &times;
+    - if flash[:alert]
+      .alert-box.warning.text-center [data-alert] 
+        b = flash[:alert]
+        a.close &times;
+
+    == yield
