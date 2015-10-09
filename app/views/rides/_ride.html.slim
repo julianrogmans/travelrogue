@@ -1,8 +1,35 @@
 - unless ride.driver == current_user
   = content_tag 'div', id: dom_id(ride), class: 'ride'
-    = ride.origin
-    = ride.destination
-    = ride.seat_count
-    = ride.date
-    = ride.departure_time
-    = ride.return_time
+    .ride__body
+      .ride__location.left
+        h3.ride__origin = ride.origin
+        p To
+        h3.ride__destination = ride.destination
+      - if user_signed_in?
+        .ride__action.right
+          - if user_signed_in?
+            - if ride.has_passenger? current_user
+              p Taking ride
+            - elsif ride.full?
+              p.full Ride full
+            - else
+              = link_to "Take ride!", confirm_ride_path(ride.id), class: 'button success'
+                
+      ul.ride__footer
+        p.ride__info.text-center: b Ride info
+        hr
+        li
+          b = ride.seats_available
+          p #{"Seat".pluralize(ride.seats_available)} open
+        li
+          b Date
+          p = ride.date.strftime("%b %e")
+        li
+          b Leaving 
+          p = ride.departure_time.strftime("%l:%M %P")
+        li
+          - if ride.return_time?
+            b Returning
+            p = ride.return_timestrftime("%l:%M %P")
+          - else
+            b No Return

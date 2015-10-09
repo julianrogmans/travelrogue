@@ -1,0 +1,29 @@
+.row
+  .user
+    .sign-up.panel.success
+      h2 Sign up
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = devise_error_messages!
+        = f.label :first_name
+          b First Name
+        = f.text_field :first_name
+        = f.label :last_name
+          b Last Name
+        = f.text_field :last_name
+        = f.label :age
+          b Age
+        = f.number_field :age
+        = f.label :email
+          b Email
+        = f.email_field :email, autofocus: true
+        = f.label :password
+          b Password
+          - if @minimum_password_length
+            em 
+            |  (#{@minimum_password_length} characters minimum)
+        = f.password_field :password, autocomplete: "off"
+        = f.label :password_confirmation
+          b Password Confirmation
+        = f.password_field :password_confirmation, autocomplete: "off"
+        = f.submit "Sign up", class: 'button round success expand'
+      = render "devise/shared/links"
