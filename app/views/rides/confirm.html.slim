@@ -1,0 +1,7 @@
+= @ride.origin
+= @ride.destination
+= @ride.seat_count
+= @ride.date
+= @ride.departure_time
+= @ride.return_time if @ride.return_time
+= link_to "Confirm", request_ride_path(@ride.id), method: :post
