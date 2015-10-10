@@ -8,7 +8,7 @@ feature "User profile" do
   end
   scenario 'can be viewed' do
     click_on current_user.full_name
-    within ".profile" do
+    within ".user" do
       expect(page).to have_text current_user.full_name
     end
   end
