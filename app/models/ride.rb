@@ -1,6 +1,6 @@
 class Ride < ActiveRecord::Base
-  belongs_to :driver, class_name: :User, foreign_key: :user_id
-  has_many :passengers
+  has_many :shares
+  has_many :riders, through: :shares, source: :user
   validates :origin, presence: true
   validates :destination, presence: true
   validates :seat_count, presence: true
