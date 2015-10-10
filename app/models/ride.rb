@@ -8,7 +8,7 @@ class Ride < ActiveRecord::Base
   validates :departure_time, presence: true
 
   def full?
-    passengers.count >= seat_count
+    passenger_count >= seat_count
   end
 
   def has_passenger?(user)
@@ -16,7 +16,7 @@ class Ride < ActiveRecord::Base
   end
 
   def add_passenger(passenger)
-    Passenger.create ride: self, user: passenger
+    passengers.create user: passenger
   end
 
   def passenger_count
