@@ -1,5 +1,6 @@
 class RidesController < ApplicationController
   before_action :find_ride, only: [:show, :update, :confirm, :send_request]
+  before_action :authenticate_user!, except: [:index]
 
   def index
     @rides = Ride.all

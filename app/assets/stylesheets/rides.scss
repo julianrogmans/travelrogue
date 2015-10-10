@@ -1,3 +1,75 @@
 // Place all the styles related to the Rides controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin round-button {
+  height: 120px;
+  width: 120px;
+  border-radius: 65px;
+  padding: 0px;
+  font-size: 1.3em;
+  border: 1px solid black;
+
+  @media #{$small-only} {
+    height: 100px;
+    width: 100px;
+    font-size: 1em;
+  }
+}
+
+@mixin round-badge {
+  @include round-button();
+  padding-top: 42px;
+  @media #{$small-only} { padding-top: 36px; }
+}
+
+@mixin round-link {
+  @include round-button();
+  padding-top: 46px;
+  @media #{$small-only} { padding-top: 40px; }
+}
+
+.ride {
+  @include grid-column(12);
+  @media #{$medium-only} { @include grid-column(9, $offset: 1.5); }
+  @media #{$large-up} { @include grid-column(6); }
+
+  &__body {
+    text-align: center;
+    @include panel($bg: lighten($warning-color, 40%));
+    border-radius: 10px;
+  }
+
+  &__location {
+    width: 65%;
+    h3 {
+      &:first-child { text-align: left; }
+      &:last-child { text-align: right; }
+    }
+    p {
+      margin: 0px;
+    }
+  }
+
+  &__action {
+    a { @include round-link(); }
+    p { @include round-badge(); }
+
+    .full { background: lighten($alert-color, 20%); }
+  }
+
+  &__footer {
+    @include block-grid(4);
+
+    .ride__info { clear: both; }
+    hr { margin: -15px 0 5px 0; }
+    b { font-size: 1.1em; }
+    li {
+      padding: 0px;
+      p { margin-bottom: 0px; }
+    }
+  }
+}
+
+.confirm {
+  @include round-link();
+}

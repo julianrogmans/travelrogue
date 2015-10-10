@@ -1,5 +1,9 @@
-= flash[:notice] if !flash[:notice].nil?
-- if @rides.present?
-  = render @rides
-- else
-  p No rides being offered currently
+.row
+  .small-12.text-center.columns
+    = image_tag('logo.png')
+  - if @rides.present?
+    = render @rides
+  - else
+    .row
+      .medium-8.medium-offset-2.columns.text-center
+        .panel.radius.warning: h4 No rides being offered currently

@@ -1,7 +1,30 @@
-= @ride.origin
-= @ride.destination
-= @ride.seat_count
-= @ride.date
-= @ride.departure_time
-= @ride.return_time if @ride.return_time
-= link_to "Confirm", request_ride_path(@ride.id), method: :post
+.row
+  .medium-10.medium-offset-1.columns
+    = content_tag 'div', id: dom_id(@ride)
+      .ride__body
+        .ride__location.left
+          h3.ride__origin = @ride.origin
+          p To
+          h3.ride__destination = @ride.destination
+        .ride__action.right
+          - if user_signed_in?
+            = link_to "Confirm!", request_ride_path(@ride.id), method: :post, class: 'button confirm success'
+                  
+        ul.ride__footer
+          p.ride__info.text-center: b Ride info
+          hr
+          li
+            b = @ride.seats_available
+            p #{"Seat".pluralize(@ride.seats_available)} open
+          li
+            b Date
+            p = @ride.date.strftime("%b %e")
+          li
+            b Leaving 
+            p = @ride.departure_time.strftime("%l:%M %P")
+          li
+            - if @ride.return_time?
+              b Returning
+              p = @ride.return_timestrftime("%l:%M %P")
+            - else
+              b No Return
