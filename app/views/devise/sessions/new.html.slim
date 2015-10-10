@@ -1,8 +1,9 @@
 .row
-  .profile
+  .user
     .panel.success.sign-in
       h2 Log in
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = devise_error_messages!
         = f.label :email
           b Email
         = f.email_field :email, autofocus: true
