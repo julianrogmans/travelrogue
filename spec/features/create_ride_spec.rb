@@ -16,7 +16,8 @@ feature "User creates a ride" do
     fill_in "Departure time", with: time
     fill_in "Return time", with: time + 2.hours
     click_on "Create Ride"
-    expect(page).to have_content origin
+    expect(page).to have_text "Your ride has been created! View Ride"
+    expect(page).to have_no_content origin
   end
 
   scenario "with invalid data" do
