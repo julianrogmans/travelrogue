@@ -30,6 +30,6 @@
         li
           - if ride.return_time?
             b Returning
-            p = ride.return_timestrftime("%l:%M %P")
+            p = ride.return_time.strftime("%l:%M %P")
           - else
             b No Return
