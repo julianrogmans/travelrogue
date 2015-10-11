@@ -7,23 +7,31 @@ class Ride < ActiveRecord::Base
   validates :date, presence: true
   validates :departure_time, presence: true
 
-  def full?
-    passenger_count >= seat_count
+  def driver
+    riders.references(:shares).where(shares: { driver: true }).first
   end
 
-  def has_passenger?(user)
-    passengers.any? { |passenger| passenger.user_id == user.id }
+  def passengers
+    riders.references(:shares).where(shares: { driver: false })
+  end
+
+  def full?
+    seats_available < 1
+  end
+
+  def has_passenger?(passenger)
+    shares.any? { |share| share.user_id == passenger.id }
   end
 
   def add_passenger(passenger)
-    passengers.create user: passenger
+    shares.create user: passenger, driver: false
   end
 
-  def passenger_count
-    passengers.count
+  def add_driver(driver)
+    shares.create user: driver, driver: true
   end
 
   def seats_available
-    seat_count - passenger_count
+    seat_count - passengers.count
   end
 end
