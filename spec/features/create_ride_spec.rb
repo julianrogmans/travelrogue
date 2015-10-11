@@ -4,6 +4,7 @@ feature "User creates a ride" do
   let(:origin) { Faker::Address.street_address }
   let(:time) { Faker::Time.forward(2, :morning) }
   before(:each) do
+    sign_in_as
     visit new_ride_path
   end
 

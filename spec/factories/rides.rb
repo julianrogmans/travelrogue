@@ -6,8 +6,10 @@ FactoryGirl.define do
     date { 1.day.from_now }
     departure_time { Time.now }
 
-    after(:create) do |ride|
-      ride.shares.create user: FactoryGirl.create(:user), driver: true
+    trait :with_driver do
+      after(:create) do |ride|
+        ride.shares.create user: create(:user), driver: true
+      end
     end
   end
 end

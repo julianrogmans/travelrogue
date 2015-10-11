@@ -1,20 +1,19 @@
 require "rails_helper"
 
 feature "List rides" do
-  let(:driver) { create(:user) }
 
   scenario "when signed in as a driver offering rides" do
-    ride_of_driver = create(:ride, driver: driver)
-    ride = create(:ride)
+    driver = create :share, :driver
+    other_ride = create :ride, :with_driver
 
-    sign_in_as driver
+    sign_in_as driver.user
 
-    expect(page).to have_content ride.origin
-    expect(page).to have_no_content ride_of_driver.origin
+    expect(page).to have_content other_ride.origin
+    expect(page).to have_no_content driver.ride.origin
   end
 
   scenario "when not signed in" do
-    ride = create(:ride)
+    ride = create :ride, :with_driver
 
     visit rides_path
 
