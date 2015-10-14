@@ -17,7 +17,7 @@ feature "User profile" do
     click_on "Settings"
     fill_in "First Name", with: "Bob"
     fill_in "Last Name", with: "Example"
-    fill_in "Current Password", with: '12345678'
+    fill_in "Current Password", with: "12345678"
     click_on "Update"
     expect(page).to have_text "Your account has been updated"
   end
