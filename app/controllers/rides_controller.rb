@@ -14,7 +14,7 @@ class RidesController < ApplicationController
   end
 
   def create
-    @ride = Ride.new(ride_params)
+    @ride = current_user.rides.build(ride_params)
 
     if @ride.save
       redirect_to ride_path(@ride.id)
