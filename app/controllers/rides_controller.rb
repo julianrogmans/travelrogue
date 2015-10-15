@@ -18,7 +18,7 @@ class RidesController < ApplicationController
 
     if @ride.save
       @ride.add_driver current_user
-      flash[:notice] = t 'ride.save.success_html', url: ride_path(@ride)
+      flash[:notice] = t "ride.save.success_html", url: ride_path(@ride)
       redirect_to root_path
     else
       render :new

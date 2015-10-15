@@ -11,5 +11,4 @@ FactoryGirl.define do
       driver false
     end
   end
-
 end

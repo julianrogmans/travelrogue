@@ -8,7 +8,7 @@ class Ride < ActiveRecord::Base
   validates :departure_time, presence: true
 
   def driver
-    riders.references(:shares).where(shares: { driver: true }).first
+    riders.references(:shares).find_by(shares: { driver: true })
   end
 
   def passengers

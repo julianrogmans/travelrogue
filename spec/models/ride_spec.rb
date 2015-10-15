@@ -9,7 +9,7 @@ describe Ride do
     ride.add_driver driver
   end
 
-  it 'has a driver' do
+  it "has a driver" do
     expect(ride.driver).to eq driver
   end
 

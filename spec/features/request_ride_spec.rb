@@ -32,7 +32,7 @@ feature "User requests a ride" do
   end
 
   scenario "when ride is full" do
-    #fill second seat available
+    # fill second seat available
     ride.add_passenger create :user
 
     sign_in_as
