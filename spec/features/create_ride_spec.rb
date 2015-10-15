@@ -1,10 +1,11 @@
 require "rails_helper"
 
 feature "User creates a ride" do
+  let(:new_user) { create :user }
   let(:origin) { Faker::Address.street_address }
   let(:time) { Faker::Time.forward(2, :morning) }
   before(:each) do
-    sign_in_as
+    sign_in_as new_user
     visit new_ride_path
   end
 
@@ -16,8 +17,7 @@ feature "User creates a ride" do
     fill_in "Departure time", with: time
     fill_in "Return time", with: time + 2.hours
     click_on "Create Ride"
-    expect(page).to have_text "Your ride has been created! View Ride"
-    expect(page).to have_no_content origin
+    expect(page).to have_content origin
   end
 
   scenario "with invalid data" do
