@@ -1,8 +1,9 @@
-class CreatePassengers < ActiveRecord::Migration
+class CreateShares < ActiveRecord::Migration
   def change
-    create_table :passengers do |t|
+    create_table :shares do |t|
       t.references :user, index: true, foreign_key: true
       t.references :ride, index: true, foreign_key: true
+      t.boolean :driver
 
       t.timestamps null: false
     end

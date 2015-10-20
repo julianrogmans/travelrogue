@@ -17,7 +17,9 @@ class RidesController < ApplicationController
     @ride = current_user.rides.build(ride_params)
 
     if @ride.save
-      redirect_to ride_path(@ride.id)
+      @ride.add_driver current_user
+      flash[:notice] = t "ride.save.success_html", url: ride_path(@ride)
+      redirect_to root_path
     else
       render :new
     end
@@ -39,7 +41,6 @@ class RidesController < ApplicationController
 
   def ride_params
     params.require(:ride).permit(
-      :user_id,
       :origin,
       :destination,
       :seat_count,
