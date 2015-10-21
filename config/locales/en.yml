@@ -20,4 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  ride:
+    save:
+      success_html: Your ride has been created! <a href="%{url}">View Ride</a>
