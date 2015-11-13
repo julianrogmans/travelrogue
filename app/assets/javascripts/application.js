@@ -16,4 +16,9 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){ $(document).foundation('topbar', 'reflow'); });
+var ready = function() {
+  $(document).foundation();
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
